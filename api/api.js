@@ -11,7 +11,7 @@ const getLatestVersion = async (packageName, redis) => {
       `https://registry.npmjs.org/${packageName}`
     );
 
-    version = {
+    const version = {
       name: packageName,
       version: data["dist-tags"].latest,
     };
