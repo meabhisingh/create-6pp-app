@@ -317,7 +317,13 @@ async function createApp() {
 
     // Creating package.json
 
-    const redis = await connectRedis();
+    let redis = null;
+    // try {
+    //   redis = await connectRedis();
+    // } catch (error) {
+    //   console.error("Failed to connect to Redis:", error);
+    // }
+
     const dependenciesPromise = [getLatestVersion("express", redis)];
 
     if (answers.useCors)
