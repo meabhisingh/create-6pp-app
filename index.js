@@ -3,7 +3,6 @@
 import fs from "fs";
 import inquirer from "inquirer";
 import { getLatestVersion } from "./api/api.js";
-import { connectRedis } from "./config/redis.js";
 import chalk from "chalk";
 
 const questions = [
@@ -348,7 +347,7 @@ async function createApp() {
     const dependenciesRaw = await Promise.all(dependenciesPromise);
     const devDependenciesRaw = await Promise.all(devDependenciesPromise);
 
-    redis.disconnect();
+    // redis.disconnect();
 
     const dependencies = dependenciesRaw.map(
       (dependency) => `"${dependency.name}": "${dependency.version}"`
