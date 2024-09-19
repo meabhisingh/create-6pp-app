@@ -171,7 +171,7 @@ async function createApp() {
         fs.mkdirSync(`${projectDir}/src/middlewares`);
         fs.mkdirSync(`${projectDir}/src/utils`);
         fs.mkdirSync(`${projectDir}/src/lib`);
-        fs.mkdirSync(`${projectDir}/src/tests`);
+        fs.mkdirSync(`${projectDir}/tests`);
       } else {
         fs.mkdirSync(projectDir);
         fs.mkdirSync(`${projectDir}/routes`);
