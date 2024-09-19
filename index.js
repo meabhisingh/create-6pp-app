@@ -337,6 +337,7 @@ async function createApp() {
       getLatestVersion("typescript", redis),
       getLatestVersion("@types/express", redis),
       getLatestVersion("@types/node", redis),
+      getLatestVersion("tsx", redis),
     ];
 
     if (answers.useCors)
@@ -365,8 +366,7 @@ async function createApp() {
     const npmScriptsTs = JSON.stringify({
       start: "set NODE_ENV=PRODUCTION & node dist/app.js",
       build: "npx tsc -p .",
-      dev: "npx nodemon dist/app.js",
-      watch: "npx tsc -w",
+      dev: "npx tsx watch src/app.ts",
     });
 
     const packageJsonContent = `{
