@@ -4,6 +4,7 @@ import fs from "fs";
 import inquirer from "inquirer";
 import { getLatestVersion } from "./api/api.js";
 import chalk from "chalk";
+import { connectRedis } from "./config/redis.js";
 
 const questions = [
   {
@@ -317,11 +318,11 @@ async function createApp() {
     // Creating package.json
 
     let redis = null;
-    // try {
-    //   redis = await connectRedis();
-    // } catch (error) {
-    //   console.error("Failed to connect to Redis:", error);
-    // }
+    try {
+      redis = await connectRedis();
+    } catch (error) {
+      console.error("Failed to connect to Redis:", error);
+    }
 
     const dependenciesPromise = [getLatestVersion("express", redis)];
 
@@ -348,7 +349,7 @@ async function createApp() {
     const dependenciesRaw = await Promise.all(dependenciesPromise);
     const devDependenciesRaw = await Promise.all(devDependenciesPromise);
 
-    // redis.disconnect();
+    redis.disconnect();
 
     const dependencies = dependenciesRaw.map(
       (dependency) => `"${dependency.name}": "${dependency.version}"`
