@@ -77,9 +77,13 @@ ${
   await writeFile(path, modelContent);
 };
 
-export const createMongoDBService = async (answers, projectDir) => {
+export const createMongoDBService = async (
+  answers,
+  projectDir,
+  projectName
+) => {
   if (!answers.useMongoDB) return;
 
   await createMongoDB(answers, projectDir);
-  await createMongooseModel(answers, projectDir);
+  await createMongooseModel(answers, projectDir, projectName);
 };
